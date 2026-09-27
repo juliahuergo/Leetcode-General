@@ -1,0 +1,18 @@
+class Solution(object):
+    def findMinArrowShots(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: int
+        """
+        
+        points.sort(key = lambda x: x[1])
+        lastShot = points[0][1]
+        cont = 1
+        for i in range(len(points)):
+            x1, x2 = points[i]
+
+            if not (x1 <= lastShot and x2 >= lastShot):
+                cont += 1
+                lastShot = x2
+        
+        return cont
