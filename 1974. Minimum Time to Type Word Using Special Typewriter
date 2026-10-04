@@ -1,0 +1,14 @@
+class Solution(object):
+    def minTimeToType(self, word):
+        """
+        :type word: str
+        :rtype: int
+        """
+        curr = 'a'
+        cont = 0
+        for l in word:
+            diff = abs(ord(l) - ord(curr))
+            cont += 1 + min(diff, 26 - diff)
+            curr = l
+        
+        return cont
