@@ -1,0 +1,23 @@
+class Solution(object):
+    def minMeetingRooms(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: int
+        """
+
+        intervals.sort()
+        
+        freeing_times = []
+        ans = 1
+        for start, end in intervals:
+            if freeing_times:
+                lowest_end = heapq.heappop(freeing_times)
+                if start < lowest_end:
+                    ans += 1
+                    heapq.heappush(freeing_times, lowest_end)
+            
+            heapq.heappush(freeing_times, end)
+
+        return ans
+
+            
